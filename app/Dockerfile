@@ -26,7 +26,7 @@ COPY --from=build /app/myapp /app/myapp
 WORKDIR /app
 
 # Expose the port on which the application runs
-EXPOSE 8001
+EXPOSE 8002
 
 # Run the application
 CMD ["/app/myapp"]
