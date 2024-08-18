@@ -16,6 +16,8 @@ services:
       - ./db_init:/docker-entrypoint-initdb.d
       - ./asd/asd:/asd:ro
       - type: bind
+        source: ./app/pg.sql
+        target: /app/pg.sql
         content: |
           -- NOTE: change to your own passwords for production environments
            \set pgpass `echo "$POSTGRES_PASSWORD"`
