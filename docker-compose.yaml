@@ -24,6 +24,7 @@ services:
 
            ALTER USER authenticator WITH PASSWORD :'pgpass';
            ALTER USER pgbouncer WITH PASSWORD :'pgpass';
+           ALTER USER myuser WITH PASSWORD :'pgpass';
       - /asdf:/asdf
       - type: bind
         source: ./app
@@ -34,5 +35,6 @@ services:
         target: /123
         read_only: false
     environment:
-      - POSTGRES_DB=database
-      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=mydatabase
+      - POSTGRES_PASSWORD=mypassword
+      
