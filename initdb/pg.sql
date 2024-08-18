@@ -1,3 +1,13 @@
+CREATE DATABASE mydatabase;
+
+\c mydatabase  -- Connect to the newly created database
+
+-- Your custom SQL commands
+ALTER USER authenticator WITH PASSWORD :'pgpass';
+ALTER USER pgbouncer WITH PASSWORD :'pgpass';
+ALTER USER myuser WITH PASSWORD :'pgpass';
+
+
 CREATE TABLE IF NOT EXISTS items (
     id SERIAL PRIMARY KEY,
     name TEXT NOT NULL,

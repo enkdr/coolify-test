@@ -9,21 +9,16 @@ services:
       - PORT=3000
       - DB_CONNECTION=postgres
       - TEST=${TEST}
+
   database:
     image: postgres:14-alpine
     volumes:
       - db-data:/var/lib/postgresql/data
       - type: bind
         source: ./initdb/pg.sql
-        target: /docker-entrypoint-initdb.d/migrations/pg.sql
-        content: |
-          -- NOTE: change to your own passwords for production environments
-           \set pgpass `echo "$POSTGRES_PASSWORD"`
-
-           ALTER USER authenticator WITH PASSWORD :'pgpass';
-           ALTER USER pgbouncer WITH PASSWORD :'pgpass';
-           ALTER USER myuser WITH PASSWORD :'pgpass';
+        target: /docker-entrypoint-initdb.d/pg.sql
+        read_only: true  # Ensure this file is read-only
     environment:
-      - POSTGRES_DB=mydatabase
-      - POSTGRES_PASSWORD=mypassword
-      
+      - POSTGRES_USER=myuser     # Specify user if needed
+      - POSTGRES_PASSWORD=mypassword  # Set the password
+    # Note: POSTGRES_DB is removed
