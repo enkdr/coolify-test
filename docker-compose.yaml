@@ -12,7 +12,7 @@ services:
   database:
     image: postgres:14-alpine
     volumes:
-      - ./schema:/docker-entrypoint-initdb.d
+      - ./app/schema:/docker-entrypoint-initdb.d
       - db-data:/var/lib/postgresql/data
       - ./asd/asd:/asd:ro
       - type: bind
